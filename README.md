@@ -8,7 +8,7 @@
 * 캡술화를 통해 객체간의 간섭을 최소화.
 * 인터페이스를 통한 다형성 최대로 한다.
 * 상속보다 표함을 이용하여 상속으로 발행할 수 있는 문제를 최소화.
-* 발생할 수 있는 문제를 예외처리를 통해 사용자에게 적극적으로 알린다.
+* 발생할 수 있는 문제를 예외처리하여 사용자에게 적극적으로 알린다.
 ![Alt text](/star/star_.drawio_.png)
 
 [UML_원본](https://mail.naver.com/read/image/?mailSN=15436&attachIndex=2&contentType=image/png&offset=1415&size=720432&mimeSN=1653835620.734712.57257.46848&org=1&u=forget980)
