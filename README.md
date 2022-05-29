@@ -10,3 +10,4 @@
 * 상속보다 표함을 이용하여 상속으로 발행할 수 있는 문제를 최소화.
 * 발생할 수 있는 문제를 예외처리를 통해 사용자에게 적극적으로 알린다.
 ![Alt text](/star/star_.drawio_.png)
+[확대](https://mail.naver.com/read/image/?mailSN=15436&attachIndex=2&contentType=image/png&offset=1415&size=720432&mimeSN=1653835620.734712.57257.46848&org=1&u=forget980)
