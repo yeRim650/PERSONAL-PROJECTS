@@ -10,7 +10,7 @@
 * 상속보다 표함을 이용하여 상속으로 밸생할 수 있는 문제를 최소화.
 * 발생할 수 있는 문제를 예외처리하여 사용자에게 적극적으로 알린다.
 * 기능을 유추할 수 있는 헤더 작성.
-* UML를 바탕으로 소스코드 작성.
+* UML을 바탕으로 소스코드 작성.
 ![Alt text](/star/star_.drawio_.png)
 
 [UML_원본](https://raw.githubusercontent.com/1000004/PERSONAL-PROJECTS/UML/star/star_.drawio_.png)
