@@ -13,5 +13,5 @@
 * 완성된 UML를 바탕으로 소스코드 작성.
 ![Alt text](/star/star_.drawio_.png)
 
-[UML_원본](https://mail.naver.com/read/image/?mailSN=15436&attachIndex=2&contentType=image/png&offset=1415&size=720432&mimeSN=1653835620.734712.57257.46848&org=1&u=forget980)
+[UML_원본](https://raw.githubusercontent.com/1000004/PERSONAL-PROJECTS/UML/star/star_.drawio_.png)
 [source_code_package](https://github.com/1000004/PERSONAL-PROJECTS/tree/UML/star/src/kr/ac/star)
