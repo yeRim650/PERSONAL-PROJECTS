@@ -19,7 +19,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 public class InformationForm extends JDialog implements ActionListener{
-	//JDialog¸¦ »ó¼Ó¹Ş°í ActionListener¸¦ ±¸ÇöÇÑ´Ù.
+	//JDialogë¥¼ ìƒì†ë°›ê³  ActionListenerë¥¼ êµ¬í˜„í•œë‹¤.
 	private JTextArea taInfo;
 	private JButton btnLogout;
 	private JButton btnWithdraw;
@@ -27,9 +27,9 @@ public class InformationForm extends JDialog implements ActionListener{
 	private LoginForm owner;
 	public InformationForm(LoginForm owner, User user){
 		super(owner, "Information", true);
-		//LoginForm°¡ owner °´Ã¼
-		//Å¸ÀÌÆ² "Information"
-		//¸ğ´ŞÃ¢ ¼Ó¼º true(¸ğ´ŞÃ¢ÀÌ ¶ç¾îÀÖÀ¸¸é LoginForm ÀÌ¿ë ¸øÇÔ)
+		//LoginFormê°€ owner ê°ì²´
+		//íƒ€ì´í‹€ "Information"
+		//ëª¨ë‹¬ì°½ ì†ì„± true(ëª¨ë‹¬ì°½ì´ ë„ì–´ìˆìœ¼ë©´ LoginForm ì´ìš© ëª»í•¨)
 		this.owner = owner;
 		this.user = user;
 		init();
@@ -61,7 +61,7 @@ public class InformationForm extends JDialog implements ActionListener{
 		add(pnlBtns, BorderLayout.SOUTH);
 	}
 	private void addListener(){
-		//Ã¢À» Á¾·áÇÒ¶§ logout ¸Ş¼­µåÈ¿Ãâ
+		//ì°½ì„ ì¢…ë£Œí• ë•Œ logout ë©”ì„œë“œíš¨ì¶œ
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -71,7 +71,7 @@ public class InformationForm extends JDialog implements ActionListener{
 		});
 		
 		btnLogout.addActionListener(this);
-		//»ı¼ºµÈ LoginForm °´Ã¼°¡ ActionListener¸¦ ±¸ÇöÇÏ°í ÀÖ¾î this°¡ ActionListener°¡ µÈ´Ù
+		//ìƒì„±ëœ LoginForm ê°ì²´ê°€ ActionListenerë¥¼ êµ¬í˜„í•˜ê³  ìˆì–´ thisê°€ ActionListenerê°€ ëœë‹¤
 		btnWithdraw.addActionListener(this);
 	}
 	private void  showDlg(){
@@ -82,8 +82,8 @@ public class InformationForm extends JDialog implements ActionListener{
 	}
 	
 	private void logout(){
-		//logout È®ÀÎ ¸ğ´ŞÃ¢À» ¶ç¿î´Ù.
-		//YES_OPTION¸¦ ¹ŞÀ¸¸é LoginFormÀ» º¼¼ö ÀÖ°Ô ¸¸µé°í ÇØ´çÃ¢À» Á¾·áÇÑ´Ù.
+		//logout í™•ì¸ ëª¨ë‹¬ì°½ì„ ë„ìš´ë‹¤.
+		//YES_OPTIONë¥¼ ë°›ìœ¼ë©´ LoginFormì„ ë³¼ìˆ˜ ìˆê²Œ ë§Œë“¤ê³  í•´ë‹¹ì°½ì„ ì¢…ë£Œí•œë‹¤.
 		int result = JOptionPane.showConfirmDialog(
 			this,
 			"logout : are you sure?",
@@ -97,11 +97,11 @@ public class InformationForm extends JDialog implements ActionListener{
 		}
 	}
 	private void withdraw(){
-		//withdraw È®ÀÎ ¸ğ´ŞÃ¢À» ¶ç¿î´Ù.
-		//YES_OPTION¸¦ ¹ŞÀ¸¸é password ÀÔ·Â¹ŞÀ» ¼ö ÀÖ´Â ¸ğ´ŞÃ¢À» ¶ç¾î userÀÇ pw¿Í ÀÏÄ¡ÇÏ¸é
-		//LoginForm ownerÀÇ removerUser ¸Ş¼­µå·Î Vector<User> list¿¡¼­ user»èÁ¦ÇÏ°í
-		//good bye~ ¸Ş½ÃÁö ¸ğ´ŞÃ¢À» ¶ç¿ì°í LoginFormÀ» º¼¼ö ÀÖ°Ô ¸¸µé°í ÇØ´çÃ¢À» Á¾·á
-		//pw°¡ ÀÏÄ¡ÇÏÁö ¾ÊÀ¸¸é check password ¸Ş½ÃÁö ¸ğ´ŞÃ¢À» ¶ç¿î´Ù.
+		//withdraw í™•ì¸ ëª¨ë‹¬ì°½ì„ ë„ìš´ë‹¤.
+		//YES_OPTIONë¥¼ ë°›ìœ¼ë©´ password ì…ë ¥ë°›ì„ ìˆ˜ ìˆëŠ” ëª¨ë‹¬ì°½ì„ ë„ì–´ userì˜ pwì™€ ì¼ì¹˜í•˜ë©´
+		//LoginForm ownerì˜ removerUser ë©”ì„œë“œë¡œ Vector<User> listì—ì„œ userì‚­ì œí•˜ê³ 
+		//good bye~ ë©”ì‹œì§€ ëª¨ë‹¬ì°½ì„ ë„ìš°ê³  LoginFormì„ ë³¼ìˆ˜ ìˆê²Œ ë§Œë“¤ê³  í•´ë‹¹ì°½ì„ ì¢…ë£Œ
+		//pwê°€ ì¼ì¹˜í•˜ì§€ ì•Šìœ¼ë©´ check password ë©”ì‹œì§€ ëª¨ë‹¬ì°½ì„ ë„ìš´ë‹¤.
 		int result = JOptionPane.showConfirmDialog(
 				this,
 				"do you really want to withdraw?",
@@ -136,7 +136,7 @@ public class InformationForm extends JDialog implements ActionListener{
 		}
 	}
 	@Override
-	public void actionPerformed(ActionEvent ae){//btnLogout Å¬¸¯½Ã logout()È£Ãâ ÀÌ´Ï¸é withdraw()È£Ãâ
+	public void actionPerformed(ActionEvent ae){//btnLogout í´ë¦­ì‹œ logout()í˜¸ì¶œ ì´ë‹ˆë©´ withdraw()í˜¸ì¶œ
 		if(ae.getSource() == btnLogout){
 			logout();
 		}else{
