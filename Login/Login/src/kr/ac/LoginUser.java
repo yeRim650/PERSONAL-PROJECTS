@@ -54,7 +54,7 @@ public class User {
 	
 	@Override
 	public String toString(){
-		String info = "<<" + uid + "´ÔÀÇ È¸¿øÁ¤º¸ >>\n";
+		String info = "<<" + uid + "Â´Ã”Ã€Ã‡ ÃˆÂ¸Â¿Ã¸ÃÂ¤ÂºÂ¸ >>\n";
 		info += "- name : " + uname + "\n";
 		info += "- password : " + upw + "\n";
 		info += "- nicknamd : " + unick + "\n";
