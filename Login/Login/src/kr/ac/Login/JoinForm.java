@@ -36,9 +36,9 @@ public class JoinForm extends JDialog implements ActionListener{
 	
 	public JoinForm(LoginForm owner){
 		super(owner, "Join", true);
-		//LoginForm°¡ owner °´Ã¼
-		//Å¸ÀÌÆ² "Join"
-		//¸ğ´ŞÃ¢ ¼Ó¼º true(¸ğ´ŞÃ¢ÀÌ ¶ç¾îÀÖÀ¸¸é LoginForm ÀÌ¿ë ¸øÇÔ)
+		//LoginFormê°€ owner ê°ì²´
+		//íƒ€ì´í‹€ "Join"
+		//ëª¨ë‹¬ì°½ ì†ì„± true(ëª¨ë‹¬ì°½ì´ ë„ì–´ìˆìœ¼ë©´ LoginForm ì´ìš© ëª»í•¨)
 		this.owner = owner;
 		init();
 		setDisplay();
@@ -96,10 +96,10 @@ public class JoinForm extends JDialog implements ActionListener{
 	}
 	private void addListener(){
 		btnJoin.addActionListener(this);
-		//»ı¼ºµÈ LoginForm °´Ã¼°¡ ActionListener¸¦ ±¸ÇöÇÏ°í ÀÖ¾î this°¡ ActionListener°¡ µÈ´Ù
+		//ìƒì„±ëœ LoginForm ê°ì²´ê°€ ActionListenerë¥¼ êµ¬í˜„í•˜ê³  ìˆì–´ thisê°€ ActionListenerê°€ ëœë‹¤
 		btnCancel.addActionListener(this);
 		addWindowListener(new WindowAdapter(){
-			//Ã¢À» Á¾·áÇÒ¶§ closeDlg ¸Ş¼­µåÈ¿Ãâ
+			//ì°½ì„ ì¢…ë£Œí• ë•Œ closeDlg ë©”ì„œë“œíš¨ì¶œ
 			@Override
 			public void windowClosing(WindowEvent we){
 				closeDlg();
@@ -113,22 +113,22 @@ public class JoinForm extends JDialog implements ActionListener{
 		setVisible(true);
 	}
 	private void closeDlg(){
-		//LoginFormÀ» º¼¼ö ÀÖ°Ô ¸¸µé°í ÇØ´çÃ¢À» Á¾·áÇÑ´Ù.
+		//LoginFormì„ ë³¼ìˆ˜ ìˆê²Œ ë§Œë“¤ê³  í•´ë‹¹ì°½ì„ ì¢…ë£Œí•œë‹¤.
 		owner.setVisible(true);	
 		dispose();
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent ae){
-		// btnJoin Å¬¸¯½Ã ÀÔ·Â È®ÀÎ, ¾ÆÀÌµğ Ã¼Å©, ºñ¹ø Ã¼Å©ÇÏ°í »óÈ²¿¡ µû¸¥ showMessageDialog ÆÄ¶ó¹ÌÅÍ º¯°æ
-		// Á¶°ÇÀ» ture·Î ¸ğµÎ Åë°úÇÏ¸é »õ·Î¿î User°¡ »ı¼ºÇÏ¿© ownerÀÇ addUser¸¦ È£ÃâÇÏ¿©
-		// Vector<User> list¿¡ user¸¦ Ãß°¡ÇÏ°í closeDlg È£Ãâ
-		// btnCancel Å¬¸¯½Ã closeDlgÈ£Ãâ
+		// btnJoin í´ë¦­ì‹œ ì…ë ¥ í™•ì¸, ì•„ì´ë”” ì²´í¬, ë¹„ë²ˆ ì²´í¬í•˜ê³  ìƒí™©ì— ë”°ë¥¸ showMessageDialog íŒŒë¼ë¯¸í„° ë³€ê²½
+		// ì¡°ê±´ì„ tureë¡œ ëª¨ë‘ í†µê³¼í•˜ë©´ ìƒˆë¡œìš´ Userê°€ ìƒì„±í•˜ì—¬ ownerì˜ addUserë¥¼ í˜¸ì¶œí•˜ì—¬
+		// Vector<User> listì— userë¥¼ ì¶”ê°€í•˜ê³  closeDlg í˜¸ì¶œ
+		// btnCancel í´ë¦­ì‹œ closeDlgí˜¸ì¶œ
 		Object s = ae.getSource();
 		if(s== btnJoin){
 			boolean flag = true;
 			String msg = "Join OK";
-			//ÀÔ·Â È®ÀÎ
+			//ì…ë ¥ í™•ì¸
 			for(int idx=0; flag && idx<inputs.length; idx++){
 				if(LoginUtils.isEmpty(inputs[idx])){
 					flag = false;
@@ -136,7 +136,7 @@ public class JoinForm extends JDialog implements ActionListener{
 					inputs[idx].requestFocus();
 				}
 			}
-			//¾ÆÀÌµğ Ã¼Å©
+			//ì•„ì´ë”” ì²´í¬
 			if(flag){
 				User user = owner.findUser(inputs[ID].getText());
 				if(user != null){
@@ -145,7 +145,7 @@ public class JoinForm extends JDialog implements ActionListener{
 					inputs[ID].requestFocus();
 				}
 			}
-			//ºñ¹ø Ã¼Å©
+			//ë¹„ë²ˆ ì²´í¬
 			if(flag){
 				String pw1 = inputs[PW].getText();
 				String pw2 = inputs[RE].getText();
