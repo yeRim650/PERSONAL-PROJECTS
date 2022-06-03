@@ -9,7 +9,7 @@ import javax.swing.JTextField;
 import javax.swing.text.JTextComponent;
 
 public class LoginUtils {
-	//Å¬·¹½º¿¡ ÀÚÁÖ »ç¿ëµÇ´Â »ó¼ö¿Í ¸Ş¼­µå »ı¼º
+	//í´ë ˆìŠ¤ì— ìì£¼ ì‚¬ìš©ë˜ëŠ” ìƒìˆ˜ì™€ ë©”ì„œë“œ ìƒì„±
 	public static final int TEXT = 0;
 	public static final int PASSWORD = 1;
 	private static final Dimension LABEL_SIZE =
@@ -19,20 +19,20 @@ public class LoginUtils {
 	private static final Dimension BTN_SIZE =
 			new Dimension(90, 23);
 	public static JLabel getLabel(String str){
-		//JLabel »ı¼º½Ã ÁöÁ¤µÈ Á¤·Ä°ú Å©±â·Î »ı¼º
+		//JLabel ìƒì„±ì‹œ ì§€ì •ëœ ì •ë ¬ê³¼ í¬ê¸°ë¡œ ìƒì„±
 		JLabel lbl = new JLabel(str, JLabel.LEFT);
 		lbl.setPreferredSize(LABEL_SIZE);
 		return lbl;
 	}
 	public static JButton getButton(String str){
-		//JButton »ı¼º½Ã ÁöÁ¤µÈ ¹öÆ° ¼±È£»çÀÌÁî¸¦ °¡Áö°í »ı¼º 
+		//JButton ìƒì„±ì‹œ ì§€ì •ëœ ë²„íŠ¼ ì„ í˜¸ì‚¬ì´ì¦ˆë¥¼ ê°€ì§€ê³  ìƒì„± 
 		JButton btn = new JButton(str);
 		btn.setPreferredSize(BTN_SIZE);
 		return btn;
 	}
 	public static JTextComponent getTextComponent(int kind){
-		//JTextComponent »ı¼º½Ã ÁöÁ¤µÈ ¹öÆ° ¼±È£»çÀÌÁî¸¦ °¡Áö°í »ı¼º
-		//kind ÆÄ¶ó¹ÌÅÍ¿¡ µû¶ó JPasswordField¸¦ »ı¼ºÇÒÁö JTextField¸¦ »ı¼ºÇÒÁö Á¤ÇÑ´Ù.
+		//JTextComponent ìƒì„±ì‹œ ì§€ì •ëœ ë²„íŠ¼ ì„ í˜¸ì‚¬ì´ì¦ˆë¥¼ ê°€ì§€ê³  ìƒì„±
+		//kind íŒŒë¼ë¯¸í„°ì— ë”°ë¼ JPasswordFieldë¥¼ ìƒì„±í• ì§€ JTextFieldë¥¼ ìƒì„±í• ì§€ ì •í•œë‹¤.
 		JTextComponent text = null;
 		if(kind == PASSWORD){
 			text = new JPasswordField();
