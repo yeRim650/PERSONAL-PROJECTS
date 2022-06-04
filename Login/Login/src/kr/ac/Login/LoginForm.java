@@ -16,7 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.text.JTextComponent;
 
 public class LoginForm extends JFrame implements ActionListener{
-	//JFrame¸¦ »ó¼Ó¹Ş°í ActionListener¸¦ ±¸ÇöÇÑ´Ù.
+	//JFrameë¥¼ ìƒì†ë°›ê³  ActionListenerë¥¼ êµ¬í˜„í•œë‹¤.
 	private JTextComponent tfId;
 	private JTextComponent pfPw;
 	
@@ -71,7 +71,7 @@ public class LoginForm extends JFrame implements ActionListener{
 	
 	private void addListener(){
 		btnLogin.addActionListener(this);
-		//»ı¼ºµÈ LoginForm °´Ã¼°¡ ActionListener¸¦ ±¸ÇöÇÏ°í ÀÖ¾î this°¡ ActionListener°¡ µÈ´Ù
+		//ìƒì„±ëœ LoginForm ê°ì²´ê°€ ActionListenerë¥¼ êµ¬í˜„í•˜ê³  ìˆì–´ thisê°€ ActionListenerê°€ ëœë‹¤
 		btnJoin.addActionListener(this);
 		addWindowListener(new WindowAdapter(){
 			@Override
@@ -102,11 +102,11 @@ public class LoginForm extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e){
 		Object src = e.getSource();
 		if(src == btnLogin){
-			//btnLoin Å¬¸¯½Ã tfId°¡ ºñ¾îÀÖ´ÂÁö pfPw°¡ ºñ¾îÀÖ´ÂÁö È®ÀÎÇÏ°í
-			//µÑ´Ù ÀÔ·ÂµÇ¾î ÀÖÀ¸¸é IDÀÏÄ¡¿©ºÎ pwÀÏÄ¡¿©ºÎ¸¦ È®ÀÎ
-			//»óÈ²¿¡ µû¶ó Message¸¦ ¸ğ´ŞÃ¢¿¡ ¶ç¾îÁÖ°í ÇØ´ç TextComponent Æ÷Ä¿½º
-			//ID,PW°¡ ÀÏÄ¡ÇÏ¸é  tfId,pfPw ³»¿ëÀ» »èÁ¦ÇÏ°í Çì´ç LoginFormÀ»  º¸ÀÌÁö ¾Ê°Ô ¸¸µé°í
-			//InformationForm °´Ã¼ »ı¼º
+			//btnLoin í´ë¦­ì‹œ tfIdê°€ ë¹„ì–´ìˆëŠ”ì§€ pfPwê°€ ë¹„ì–´ìˆëŠ”ì§€ í™•ì¸í•˜ê³ 
+			//ë‘˜ë‹¤ ì…ë ¥ë˜ì–´ ìˆìœ¼ë©´ IDì¼ì¹˜ì—¬ë¶€ pwì¼ì¹˜ì—¬ë¶€ë¥¼ í™•ì¸
+			//ìƒí™©ì— ë”°ë¼ Messageë¥¼ ëª¨ë‹¬ì°½ì— ë„ì–´ì£¼ê³  í•´ë‹¹ TextComponent í¬ì»¤ìŠ¤
+			//ID,PWê°€ ì¼ì¹˜í•˜ë©´  tfId,pfPw ë‚´ìš©ì„ ì‚­ì œí•˜ê³  í—¤ë‹¹ LoginFormì„  ë³´ì´ì§€ ì•Šê²Œ ë§Œë“¤ê³ 
+			//InformationForm ê°ì²´ ìƒì„±
 			JTextComponent input = null;
 			String msg = "welcome!!";
 			User user = null;
@@ -146,22 +146,22 @@ public class LoginForm extends JFrame implements ActionListener{
 				new InformationForm(this,user);
 			}
 		}else{
-			//btnJoin Å¬¸¯½Ã
-			//tfId,pfPw ³»¿ëÀ» »èÁ¦
-			//ÇØ´ç LoginFormÀ»  º¸ÀÌÁö ¾Ê°Ô ¸¸µé°í
-			//JoinForm °´Ã¼ »ı¼º
+			//btnJoin í´ë¦­ì‹œ
+			//tfId,pfPw ë‚´ìš©ì„ ì‚­ì œ
+			//í•´ë‹¹ LoginFormì„  ë³´ì´ì§€ ì•Šê²Œ ë§Œë“¤ê³ 
+			//JoinForm ê°ì²´ ìƒì„±
 			clear();
 			//setVisible(false);
 			new JoinForm(this);
 		}
 	}
-	private void clear(){//tfId,pfPw ³»¿ëÀ» »èÁ¦
+	private void clear(){//tfId,pfPw ë‚´ìš©ì„ ì‚­ì œ
 		tfId.setText("");
 		pfPw.setText("");
 	}
 	
 	public User findUser(String userId){
-		//Id¸¦ °¡Áö°í Vector<User> list¿¡¼­ ¿øÇÏ´Â User¸¦ Ã£´Â´Ù
+		//Idë¥¼ ê°€ì§€ê³  Vector<User> listì—ì„œ ì›í•˜ëŠ” Userë¥¼ ì°¾ëŠ”ë‹¤
 		int idx = list.indexOf(new User(userId));
 		if(idx>=0){
 			return list.get(idx);
@@ -170,11 +170,11 @@ public class LoginForm extends JFrame implements ActionListener{
 		}
 	}
 	public void addUser(User user){
-		//Vector<User> list¿¡ userÃß°¡
+		//Vector<User> listì— userì¶”ê°€
 		list.add(user);
 	}
 	public void removerUser(User user){
-		//Vector<User> list¿¡ user»èÁ¦
+		//Vector<User> listì— userì‚­ì œ
 		list.remove(user);
 	}
 	public static void main(String[] args){
