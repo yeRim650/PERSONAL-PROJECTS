@@ -1,7 +1,12 @@
 package kr.ac.lottoTest;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -9,25 +14,22 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 
 public class Lotto extends JFrame implements ActionListener {
-   
-   private JLabel lblHoits;
-   private JRadioButton[] rbtns;
-   private JRadioButton rbtnJa;
-   private JRadioButton rbtnSoo;
+   private JLabel lblTry;
+   private JLabel lblImage;
+   private JButton btnPlus;
+   private JButton btnMinus;
    private JButton btnStart;
-   //내 번호
+
    private MyNums[] nums;
-   //당첨번호
+
    private LottoNums loNums;
    
    private ArrayList<ArrayList<Integer>> myLists;
@@ -42,59 +44,56 @@ public class Lotto extends JFrame implements ActionListener {
    }
    
    private void init() {
-           
-         lblHoits = new JLabel("구매횟수");
-         //라디오 버튼 배열 5개 만들기
-         rbtns = new JRadioButton[5]; 
-         
-         ButtonGroup group1 = new ButtonGroup();
-         for(int i = 0; i < 5; i++ ) {
-            rbtns[i] = new JRadioButton(String.valueOf(i + 1)); //int -> string으로 변환
-            group1.add(rbtns [i]);
-         }
-         //구매횟수 1을 선택으로 
-         rbtns[0].setSelected(true);
-         
-         rbtnJa = new JRadioButton("자동", true); //자동버튼 누른채로
-         rbtnSoo = new JRadioButton("수동");
-         
-         ButtonGroup group2 = new ButtonGroup();
-         group2.add(rbtnJa);
-         group2.add(rbtnSoo);
-         
-         btnStart = new JButton("시작하기");
-         lblHoits.setIcon(new ImageIcon("Lotto.png"));
-      }
+	   Toolkit kit = Toolkit.getDefaultToolkit();
+	   Image imgLotto = kit.getImage("Lotto.png");
+	   Image newImgLotto = imgLotto.getScaledInstance(530,200,Image.SCALE_SMOOTH);
+	   lblImage = new JLabel(new ImageIcon(newImgLotto));
+	   lblTry = new JLabel("1");
+	   btnMinus = new JButton(new ImageIcon("Back-icon.png"));
+	   btnMinus.setPreferredSize(new Dimension(20,20));
+	   btnMinus.setBorderPainted(false);
+	   btnMinus.setFocusPainted(false);
+	   btnMinus.setContentAreaFilled(false);
+	   btnPlus = new JButton(new ImageIcon("Next-icon.png"));
+	   btnPlus.setPreferredSize(new Dimension(20,20)); 
+	   btnPlus.setBorderPainted(false);
+	   btnPlus.setFocusPainted(false);
+	   btnPlus.setContentAreaFilled(false);
+       btnStart = new JButton("시작하기");
+       btnStart.setContentAreaFilled(false);
+       btnStart.setPreferredSize(new Dimension(100,25));
+   }
    
    private void setDisplay() {
-     
-         JPanel pnlNorth = new JPanel(new GridLayout(0, 1));
-         JPanel pnlRb = new JPanel();
+        JPanel pnlNorth = new JPanel(new BorderLayout());
+        pnlNorth.add(lblImage, BorderLayout.NORTH);
+        JPanel pnlLbl = new JPanel(new GridLayout(0,1));
+        JLabel lbl = new JLabel("구매 횟수",JLabel.CENTER);
+        lbl.setFont(new Font("굴림",Font.BOLD,15));
+        pnlLbl.add(lbl,JLabel.CENTER);
+        pnlLbl.add(new JLabel("<최대 5회>",JLabel.CENTER));
+        pnlNorth.add(pnlLbl, BorderLayout.CENTER);
+        JPanel pnlTry = new JPanel();
+        pnlTry.add(btnMinus);
+        pnlTry.add(lblTry);
+        pnlTry.add(btnPlus);
+        pnlNorth.add(pnlTry, BorderLayout.SOUTH);
+        JPanel pnlCenter = new JPanel();
+        pnlNorth.setBackground(Color.WHITE);
+        pnlLbl.setBackground(Color.WHITE);
+        pnlTry.setBackground(Color.WHITE);
+        pnlCenter.setBackground(Color.WHITE);
+        pnlCenter.add(btnStart);
+        add(pnlNorth, BorderLayout.NORTH);
+        add(pnlCenter, BorderLayout.CENTER);
          
-         pnlRb.setToolTipText("횟수를 지정하세요");
-         pnlRb.add(lblHoits);
-         for(int i = 0; i < 5; i++) {
-            pnlRb.add(rbtns [i]);
-         }
-         pnlNorth.add(pnlRb);
-         JPanel pnlCenter = new JPanel();
-         pnlCenter.add(rbtnJa);
-         pnlCenter.add(rbtnSoo);
-         
-         JPanel pnlSouth = new JPanel();
-         pnlSouth.add(btnStart);
-         
-         
-         add(pnlNorth, BorderLayout.NORTH);
-         add(pnlCenter, BorderLayout.CENTER);
-         add(pnlSouth, BorderLayout.SOUTH);
-         
-      }
+   }
    
    private void addListener() {
        btnStart.addActionListener(this);
-       //x표시 누르면 경고창
-        addWindowListener(new WindowAdapter(){
+       btnPlus.addActionListener(this);
+       btnMinus.addActionListener(this);
+       addWindowListener(new WindowAdapter(){
            @Override
            public void windowClosing(WindowEvent we){
               int result = JOptionPane.showConfirmDialog(
@@ -108,38 +107,27 @@ public class Lotto extends JFrame implements ActionListener {
                  System.exit(0);
               }
            }
-        });
-        
-        
-  }
+       });
+   }
    @Override
    public void actionPerformed(ActionEvent ae){
-	   	boolean flag = false;
-         int i = 0;
-         while(!flag) { //true가 들어오면 ~ 선택된 라디오 버튼 찾는 반복문 찾으면 반복은 끝난다
-            flag = rbtns[i].isSelected(); //1~5까지 라디오 버튼 뭐가 선택 됬는지
-            if(flag) {//~선택된 라디오 버튼 찾으면
-            	maxTryNum = Integer.parseInt(rbtns[i].getText());//라디오버튼 int로 변환 하고 가져온다
-               nums = new MyNums[maxTryNum]; //nums로 집어넣는다
-            }
-            i++;
-         }
-         if(rbtnJa.isSelected()) { //자동 버튼이 선택되면
-            loNums = new LottoNums();
-            for(int idx =0; idx < nums.length; idx++) { //선택된 nums크기 만큼 배열생성
-               nums[idx] = new MyNums();
-            }
-            showResult(); 
-            new LottoInfo(this); //자동 누르면 인포로  
-         }else {
-            new LottoInput(this); // 수동 누르면 인풋으로
-       }
-    }
+	   	Object src = ae.getSource();
+	   	maxTryNum = Integer.parseInt(lblTry.getText());
+   		if(src == btnMinus && maxTryNum>1){
+   			lblTry.setText(String.valueOf(maxTryNum-1));
+   		}else if(src == btnPlus && maxTryNum<5){
+   			lblTry.setText(String.valueOf(maxTryNum+1));
+   		}
+	   	if(src == btnStart){
+	   		nums = new MyNums[maxTryNum];
+	   		new LottoInput(this);
+	   	}
+   }
    public void showResult() {
-         Integer[] excBonus = Arrays.copyOfRange( // ~ Arrays.copyOfRange의 파라미터는 3개 복사할 배열 , 복사를 시작할 인덱스, 복사가 끝나는 인덱스
-               loNums.getNums(), 0, LottoNums.BONUS // ~ 메서드 Arrays.copyOfRange로 보너스 번호를 제외한 번호를 복사해 가져온다. 
+         Integer[] excBonus = Arrays.copyOfRange(
+              loNums.getNums(), 0, LottoNums.BONUS
          );
-         ArrayList<Integer> goalList = new ArrayList<Integer>(//~retainAll을 쓰기 위해서는 배열을 list로 변경이 필요 array -> list
+         ArrayList<Integer> goalList = new ArrayList<Integer>(
                Arrays.asList(excBonus)
          );
          myLists = new ArrayList<ArrayList<Integer>>();
@@ -147,9 +135,9 @@ public class Lotto extends JFrame implements ActionListener {
 
          for(MyNums temp : nums){
             ArrayList<Integer> myList =new ArrayList<Integer>(Arrays.asList(temp.getNums()));
-            myList.retainAll(goalList);//중복되는 부분 가져오기
+            myList.retainAll(goalList);
 
-            int count = myList.size(); //중복된 부븐 길이에 따라 등수 결정 ex) 6이면 6개가 중복되므로 1등
+            int count = myList.size();
             
             myLists.add(myList);
             int rank = 0;
@@ -159,14 +147,11 @@ public class Lotto extends JFrame implements ActionListener {
                rank = 1;
                break;
             case 5 :
-               // 구매한 로또번호 에서 보너스 번호의 인덱스 번호 확인 -> 없으면 -1
                int indexOfBonus = Arrays.binarySearch(
                   temp.getNums(), loNums.getBonusNum()
                );
-               // 보너스 번호가 존재하면 index번호는 0이상으로 출력됨
                if(indexOfBonus >= 0) {
                   rank = 2;
-               // 보너스 번호가 없으면 index번호는 0미만으로 출력됨
                } else {
                   rank = 3;
                }
@@ -181,57 +166,53 @@ public class Lotto extends JFrame implements ActionListener {
             ranks.add(rank);
      }       
    }
-   public String getLottoNums() {
-         return loNums.toString();
+   public ImageNumJPanel getLottoNums() {
+	   return new ImageNumJPanel(loNums);
    }
-   public String getMyNums(int idx) {
-      return nums[idx].toString();
+   public ImageNumJPanel getNumsResult(int idx){
+	   return new ImageNumJPanel(nums[idx],myLists.get(idx),ranks.get(idx));
    }
-   public String getMyLists(int idx) {
-      return myLists.get(idx).toString();
-   }
-   public int getRank(int idx) {
-      return ranks.get(idx);
-   }
-   public void getSome(int idx,MyNums m){// ~ MyNums 추가
+   public void getSome(int idx,MyNums m){
       nums[idx] = m;
    }
-   public void removeSome(int idx){// ~ 수정사항 MyNums 삭제
+   public void removeSome(int idx){
 	   nums[idx] = null;
    }
    public int getTryNum(){
-	      return maxTryNum;
-}
-	   public void makeLottoNums(){
-	      loNums = new LottoNums();
-	   }
-	   public String rank2(){
-		   int count = 0;
-		   int idx1 = 0;
-		   int idx2 = 0;
-		   boolean flag = true;
-		   while (flag) {
-			   makeLottoNums();
-			   showResult();
-			   idx1 = ranks.indexOf(new Integer(1)); // ~ ranks에서 1등을 찾는다
-			   idx2 = ranks.indexOf(new Integer(2)); // ranks에 idxex2번을 가져온다 
-			   count++;//~ 1, 2등을 찾으면서 반복횟수
-			   if(!(idx1==-1)||!(idx2==-1)){ // ~ idx2가 -1이면 ranks에 2등이 없다 idx1가 -1이면 ranks에 1등이 없다
-				   flag = false;// ~ ||는 or 1등이나 2등중 하나만이라도 되면 반복문 나감
-			   }
+	   return maxTryNum;
+   }
+   public void makeLottoNums(){
+	   loNums = new LottoNums();
+   }
+   public String rank2(){
+	   int count = 0;
+	   int idx1 = 0;
+	   int idx2 = 0;
+	   boolean flag = true;
+	   while (flag) {
+		   makeLottoNums();
+		   showResult();
+		   idx1 = ranks.indexOf(new Integer(1));
+		   idx2 = ranks.indexOf(new Integer(2));
+		   count++;
+		   if(!(idx1==-1)||!(idx2==-1)){
+			   flag = false;
 		   }
-		   return count+"개 사시면 됩니다.";
 	   }
+	   if(idx1==-1){
+		   return count+"개 사시면 2등 게임 "+LottoInput.ORDER[idx2];
+	   }else{
+		   return count+"개 사시면 1등 게임 "+LottoInput.ORDER[idx1];
+	   }
+   }
    private void showFrame() {
-         setTitle("★로또를 시작합니다★");
+         setTitle("로또를 시작합니다");
          pack();
          setLocationRelativeTo(null);
          setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-         setResizable(false);//~수정사항 크기 고정
+         setResizable(false);
          setVisible(true);
    }
-   
-   
    public static void main(String[] args) {
       new Lotto();
    }

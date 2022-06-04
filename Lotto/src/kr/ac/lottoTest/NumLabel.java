@@ -2,6 +2,7 @@ package kr.ac.lottoTest;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
@@ -17,7 +18,8 @@ public class NumLabel extends JLabel{
       setForeground(Color.RED);
       setOpaque(true);
       setBackground(Color.WHITE);
-      setPreferredSize(new Dimension(25, 25));
+      setPreferredSize(new Dimension(30, 34));
+      setFont(new Font("Dialog",Font.PLAIN,14));
    }
    
    public int getOrder() {
@@ -29,9 +31,11 @@ public class NumLabel extends JLabel{
    public void setSelect(boolean select) {
       this.select = select;
       if(select){
-    	  setBackground(new Color(0xABF200));
+    	  setBackground(new Color(0x5D5D5D));
+    	  setForeground(Color.WHITE);
       }else{
     	  setBackground(Color.WHITE);
+    	  setForeground(Color.RED);
       }
    }
 }
