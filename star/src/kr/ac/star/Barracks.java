@@ -8,12 +8,12 @@ public class Barracks extends Structure{
 		super(user, point, hp, maxHp);
 	}
 
-	public Marine warpMarine(Point point, int mineral)throws Exception{
+	public Marine warpMarine(int mineral)throws Exception{
 		getUser().consumMineral(mineral);
-		return new Marine(getUser(),point);
+		return new Marine(getUser(),this.getPoint());
 	}
-	public Madic warpMadic(Point point, int mineral)throws Exception{
+	public Madic warpMadic(int mineral)throws Exception{
 		getUser().consumMineral(mineral);
-		return new Madic(getUser(),point);
+		return new Madic(getUser(),this.getPoint());
 	}
 }

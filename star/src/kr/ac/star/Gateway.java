@@ -21,8 +21,8 @@ public class Gateway extends Structure implements IProtossStructure{
 		}
 	}
 	
-	public Zealot warpZealot(Point point, int mineral) throws Exception{
+	public Zealot warpZealot(int mineral) throws Exception{
 		getUser().consumMineral(mineral);
-		return new Zealot(getUser(), point);
+		return new Zealot(getUser(), this.getPoint());
 	}
 }
