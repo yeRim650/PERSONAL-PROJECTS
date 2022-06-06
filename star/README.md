@@ -1,4 +1,4 @@
-# UML - 스타크래프트 객체 지향 모델링
+## UML - 스타크래프트 객체 지향 모델링
 <img src="https://postfiles.pstatic.net/MjAyMjA1MzBfMTQ5/MDAxNjUzODM3MjU2MTQ0.73pvZ6nQwr7My2JxBd_Krx07kkzUuPj8z9v3AyRbGJMg.p0hBIDuY_laxrLWqRulj6jwZ9yMNFY8oBTV6Hifdw_8g.PNG.forget980/image.png?type=w580" width="20%" height="20%" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 ### 목표
 * #### 스타크레프트의 종족 구현(Zerg Protoss Terran 세가지 종족)
